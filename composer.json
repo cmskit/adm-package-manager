@@ -1,0 +1,22 @@
+{
+  "name": "cms-kit admin wizard package manager",
+  "type": "library",
+  "version": "0.7.0",
+  "description": "this wizard lets you explore and manage packages (extensions, templates and wizards)",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Christoph Taubmann",
+      "email": "info@cms-kit.com"
+    }
+  ],
+  "homepage": "http://cms-kit.com",
+
+  "require": {
+    "php": ">=5.3.3",
+    "cmskit/lib-jquery-ui": "*",
+    "michelf/php-markdown": "*",
+    "cmskit/lib-jsoneditor": "*",
+    "cmskit/lib-ace-editor": "*"
+  }
+}
