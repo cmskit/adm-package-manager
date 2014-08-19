@@ -1,6 +1,6 @@
 {
-  "name": "cms-kit admin wizard package manager",
-  "type": "library",
+  "name": "cmskit/admin-package-manager",
+  "type": "cmskit-adminwizard",
   "version": "0.7.0",
   "description": "this wizard lets you explore and manage packages (extensions, templates and wizards)",
   "license": "GPL",
