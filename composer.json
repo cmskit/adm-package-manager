@@ -2,7 +2,7 @@
   "name": "cmskit/admin-package-manager",
   "type": "library",
   "version": "0.7.0",
-  "description": "this wizard lets you explore and manage packages (extensions, templates and wizards)",
+  "description": "This wizard lets you explore and manage packages (extensions, templates and wizards)",
   "license": "GPL",
   "authors": [
     {
@@ -14,6 +14,7 @@
 
   "require": {
     "php": ">=5.3.3",
+    "cmskit/package-installer": "1.0.*@dev",
     "cmskit/lib-jquery-ui": "*",
     "michelf/php-markdown": "*",
     "cmskit/lib-jsoneditor": "*",
