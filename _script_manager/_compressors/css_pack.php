@@ -35,7 +35,7 @@ $links = '';
 
 
 // grab the parameters of all jQuery-UI - Styles
-$uiFolders = glob($backend . '/../vendor/cmskit/lib-jquery-ui/themes/*', GLOB_ONLYDIR);
+$uiFolders = glob($backend . '/../vendor/cmskit/jquery-ui/themes/*', GLOB_ONLYDIR);
 $styles = array();
 foreach ($uiFolders as $uiFolder) {
     if (@$paramstr = file_get_contents($uiFolder . '/parameter.txt')) {
@@ -78,7 +78,7 @@ foreach ($paths as $templatename => $arr) {
             );
 
             // build relative path pointing to the UI-Directory
-            $v['BASEPATH'] = relativePath(dirname($o), $backend . '/../vendor/cmskit/lib-jquery-ui/themes/' . $k);
+            $v['BASEPATH'] = relativePath(dirname($o), $backend . '/../vendor/cmskit/jquery-ui/themes/' . $k);
 
             // save File with Replacements
             putFile($templatename, $o, strtr($str, $v));

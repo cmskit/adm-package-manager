@@ -227,11 +227,11 @@ $form_action = 'kickstarter.php' . $gets;
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="inc/styles/style.css"/>
     <link
-        href="../../../vendor/cmskit/lib-jquery-ui/themes/<?php echo end($_SESSION[$projectName]['config']['theme']) ?>/jquery-ui.css"
+        href="../../../vendor/cmskit/jquery-ui/themes/<?php echo end($_SESSION[$projectName]['config']['theme']) ?>/jquery-ui.css"
         rel="stylesheet"/>
-    <script src="../../../vendor/cmskit/lib-jquery-ui/jquery.min.js"></script>
+    <script src="../../../vendor/cmskit/jquery-ui/jquery.min.js"></script>
     <script>$.uiBackCompat = false;</script>
-    <script src="../../../vendor/cmskit/lib-jquery-ui/jquery-ui.js"></script>
+    <script src="../../../vendor/cmskit/jquery-ui/jquery-ui.js"></script>
 
     <style>
         #wrapper {

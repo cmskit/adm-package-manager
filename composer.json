@@ -1,23 +1,23 @@
 {
-  "name": "cmskit/admin-package-manager",
-  "type": "library",
-  "version": "0.7.0",
-  "description": "This wizard lets you explore and manage packages (extensions, templates and wizards)",
-  "license": "GPL",
-  "authors": [
-    {
-      "name": "Christoph Taubmann",
-      "email": "info@cms-kit.com"
-    }
-  ],
-  "homepage": "http://cms-kit.com",
+    "name": "cmskit/admin-package-manager",
+    "type": "library",
+    "version": "0.7.0",
+    "description": "This wizard lets you explore and manage packages (extensions, templates and wizards)",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Christoph Taubmann",
+            "email": "info@cms-kit.com"
+        }
+    ],
+    "homepage": "http://cms-kit.com",
 
-  "require": {
-    "php": ">=5.3.3",
-    "cmskit/package-installer": "1.0.*@dev",
-    "cmskit/lib-jquery-ui": "*",
-    "michelf/php-markdown": "*",
-    "cmskit/lib-jsoneditor": "*",
-    "cmskit/lib-ace-editor": "*"
-  }
+    "require": {
+        "php": ">=5.3.3",
+        "cmskit/package-installer": "1.0.*@dev",
+        "cmskit/jquery-ui": "dev-master",
+        "cmskit/jsoneditor": "dev-master",
+        "cmskit/ace-editor": "dev-master",
+        "michelf/php-markdown": "*"
+    }
 }

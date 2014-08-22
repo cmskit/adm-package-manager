@@ -31,7 +31,7 @@ Here's a example configuration
 	    "lessify": true,
 	    "src": [
 	      {
-		"path": "VENDOR/cmskit/lib-jquery-ui/plugins/css/jquery.foldertree.css",
+		"path": "VENDOR/cmskit/jquery-ui/plugins/css/jquery.foldertree.css",
 		"compress": true
 	      },
 	      {
@@ -56,13 +56,13 @@ Here's a example configuration
 		"no_commenthead": false
 	      },
 	      {
-		"path": "VENDOR/cmskit/lib-jquery-ui/plugins/jquery.autosize.min.js",
+		"path": "VENDOR/cmskit/jquery-ui/plugins/jquery.autosize.min.js",
 		"compress": true,
 		"translate": false,
 		"no_commenthead": false
 	      },
 	      {
-		"path": "VENDOR/cmskit/lib-jquery-ui/plugins/jquery.foldertree.js",
+		"path": "VENDOR/cmskit/jquery-ui/plugins/jquery.foldertree.js",
 		"compress": true,
 		"translate": false,
 		"no_commenthead": true
@@ -75,7 +75,7 @@ Here's a example configuration
 
 ### Packing CSS (only if "lessify" is set to true)
 
-Folders inside of "vendor/cmskit/lib-jquery-ui/themes/" are taken as jQuery-UI Themes, so for every Theme a copy is made (in the path defined in "out") in order to replace variables with theme values. 
+Folders inside of "vendor/cmskit/jquery-ui/themes/" are taken as jQuery-UI Themes, so for every Theme a copy is made (in the path defined in "out") in order to replace variables with theme values.
 
 Every theme folder should contain a file named "parameter.txt" with a url-encoded string of the theme parameters like this
 

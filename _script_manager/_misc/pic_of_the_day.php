@@ -146,7 +146,7 @@ foreach($loginpics as $loginpic)
 
 <button type="submit" >save</button>
 </form>
-<script src="<?php echo relativePath(__DIR__, $backend.'/../vendor/cmskit/lib-jquery-ui')?>/jquery.min.js"></script>
+<script src="<?php echo relativePath(__DIR__, $backend.'/../vendor/cmskit/jquery-ui')?>/jquery.min.js"></script>
 <script>
 
 // highlight actual Inmage

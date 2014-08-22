@@ -95,7 +95,7 @@ $action = 'showConfig.php?m='.$_GET['m'].'&project='.$projectName.'&ext='.$_GET[
 <head>
 	<meta charset="utf-8" />
 	<title>JSON-Editor</title>
-	<script type="text/javascript" src="../../../vendor/cmskit/lib-jquery-ui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../vendor/cmskit/jquery-ui/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../wizards/jsoneditor/jsoneditor/jsoneditor.css" />
 	<link rel="stylesheet" type="text/css" href="../../wizards/jsoneditor/add/add.css" />
 	<script type="text/javascript" src="../../wizards/jsoneditor/jsoneditor/jsoneditor.js"></script>

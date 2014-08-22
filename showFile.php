@@ -27,7 +27,7 @@
 */
 
 if(!file_exists('../../wizards/markup/index.php')) exit('Markup-Wizard is missing');
-if(!file_exists('../../../vendor/cmskit/lib-ace-editor/src-min/ace.js')) exit('Syntax-Wizard is missing :-(');
+if(!file_exists('../../../vendor/cmskit/ace-editor/src-min/ace.js')) exit('Syntax-Wizard is missing :-(');
 
 require '../header.php';
 require 'inc/path.php';
@@ -86,8 +86,8 @@ else
 	
 	<link href="../../wizards/markup/inc/styles.css" rel="stylesheet" />
 	<script src="../../wizards/markup/inc/scripts.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../../../vendor/cmskit/lib-jquery-ui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../../../vendor/cmskit/lib-ace-editor/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../vendor/cmskit/jquery-ui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../vendor/cmskit/ace-editor/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 	<style>
 		body, #helpdesk{ font-size:14px;background-color:#fff;color:#000;border:1px solid #000;}
 	</style>
