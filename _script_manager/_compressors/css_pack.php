@@ -30,7 +30,7 @@ include '../../../header.php';
 include 'helper.php';
 
 $headstr = (isset($_GET['nocompress']) ? 'Stylesheets concatenated' : 'Stylesheets packed');
-$headline = '/* AUTO CREATED FILE (build at ' . date('d.m.Y H:i:s', time()) . ") do not edit */\n";
+$headline = '/* AUTO CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit */\n";
 $links = '';
 
 
