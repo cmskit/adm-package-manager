@@ -126,7 +126,7 @@ if (isset($_POST)) {
             chmod($d, 0777);
 
             // unzip the Extension-Sceleton
-            require('../../../vendor/cmskit/lib-pclzip/pclzip.lib.php');
+            require('../../../vendor/pclzip/pclzip/pclzip.lib.php');
             $archive = new PclZip('inc/dummy.zip');
             if ($archive->extract(PCLZIP_OPT_PATH, $d,
                     PCLZIP_CB_PRE_EXTRACT, 'preExtractCallBack',
@@ -152,7 +152,7 @@ if (isset($_POST)) {
     ) {
         $ename = substr($_FILES['extensionzip']['name'], 0, -4);
         if (!file_exists($ext_path . $ename)) {
-            require('../../../vendor/cmskit/lib-pclzip/pclzip.lib.php');
+            require('../../../vendor/pclzip/pclzip/pclzip.lib.php');
             $archive = new PclZip($_FILES['extensionzip']['tmp_name']);
             if ($archive->extract(PCLZIP_OPT_PATH, $ext_path,
                     PCLZIP_CB_PRE_EXTRACT, 'preExtractCallBack',
@@ -231,7 +231,7 @@ $form_action = 'kickstarter.php' . $gets;
         rel="stylesheet"/>
     <script src="../../../vendor/cmskit/jquery-ui/jquery.min.js"></script>
     <script>$.uiBackCompat = false;</script>
-    <script src="../../../vendor/cmskit/jquery-ui/jquery-ui.js"></script>
+    <script src="../../../vendor/cmskit/jquery-ui/jquery-ui.min.js"></script>
 
     <style>
         #wrapper {

@@ -5,7 +5,7 @@ if (empty($_GET['ext'])) exit('<h3>Select extension first!</h3>');
 
 require 'inc/path.php';
 require 'inc/functions.php';
-require '../../../vendor/cmskit/lib-pclzip/pclzip.lib.php';
+require '../../../vendor/pclzip/pclzip/pclzip.lib.php';
 
 // seach for dirs in subdir "doc"
 $docpath = $mainpath[2] . $_GET['ext'] . '/doc';

@@ -156,7 +156,7 @@ if(isset($_GET['ext']))
 <link href="../../../vendor/cmskit/jquery-ui/themes/<?php echo end($_SESSION[$projectName]['settings']['interface']['theme'])?>/jquery-ui.css" rel="stylesheet" />
 <script src="../../../vendor/cmskit/jquery-ui/jquery.min.js"></script>
 <script>$.uiBackCompat = false;</script>
-<script src="../../../vendor/cmskit/jquery-ui/jquery-ui.js"></script>
+<script src="../../../vendor/cmskit/jquery-ui/jquery-ui.min.js"></script>
 
 <script type="text/javascript"> 
 /*<![CDATA[*//*---->*/

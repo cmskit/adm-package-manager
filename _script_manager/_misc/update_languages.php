@@ -51,7 +51,7 @@ if($_FILES['langfile'] && $_FILES['langfile']['name'] && array_pop($a)=='zip')
 {
 	$zipPath = $_FILES['langfile']['tmp_name'];
 	
-	require($backend.'/../vendor/cmskit/lib-pclzip/pclzip.lib.php');
+	require($backend.'/../vendor/pclzip/pclzip/pclzip.lib.php');
 	$archive = new PclZip($zipPath);
 	
 	if ($archive->extract(	
