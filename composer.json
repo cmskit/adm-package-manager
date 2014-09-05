@@ -18,6 +18,7 @@
         "cmskit/jquery-ui": "dev-master",
         "cmskit/jsoneditor": "dev-master",
         "cmskit/ace-editor": "dev-master",
-        "michelf/php-markdown": "*"
+        "michelf/php-markdown": "*",
+        "pclzip/pclzip": "dev-master"
     }
 }
