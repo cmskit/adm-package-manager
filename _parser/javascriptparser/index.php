@@ -27,29 +27,6 @@
 include '../../../header.php';
 include '../helper.php';
 
-/*
-
-$links = '';
-
-
-$paths = getPaths('js', $_GET['m']);
-
-function LL($s)
-{
-    return "'".L($s)."'";
-}
-// loop all templates name => array(filepath, compress_code, translate_labels, restore_commenthead)
-
-foreach ($paths as $templatename => $arr) {
-
-    // try to get language-labels
-    @include($arr['base'] . '/locales/' . $_GET['lang'] . '.php');
-
-    //
-
-
-}// loop all templates END
-*/
 
 ?>
 
@@ -96,22 +73,31 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
 
 
     $msg = (isset($_POST['debug']) ? 'Scripts concatenated' : 'Scripts packed') . ' (' . time() . ')';
-    $headline = '// AUTO-CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit!\n";
+    $headline = '// AUTO-CREATED FILE (built at ' . date('Y-m-d H:i:s', time()) . ") do not edit!\n";
 
     // try to get language-labels
     @include($arr['base'] . '/locales/' . $_POST['lang'] . '.php');
 
     $str = $headline;
+    // loop all paths in "src"
     foreach ($arr['src'] as $src) {
         $p = str_replace(
             array('DIR', 'VENDOR', 'BACKEND', 'FRONTEND'),
             array($dir, dirname($backend).'/vendor', $backend, $frontend),
             $src['path']
         );
-        if (!file_exists($p)) {
-            exit('<p>' . $p . ' is missing!</p>');
+        $s = '';
+
+        // grab the file(s) by glob (respecting wildcards within the path)
+        $files = glob($p);
+
+        foreach($files as $file) {
+
+            // if a filename is excluded skip it
+            if(!isset($src['exclude']) || !in_array(basename($file), $src['exclude'])) {
+                $s .= file_get_contents($file);
+            }
         }
-        $s = file_get_contents($p);
 
         $str .= ((!$src['compress'] || !empty($_POST['debug'])) ? $s : compress($s, $src['no_commenthead']));
 

@@ -7,7 +7,7 @@ $getAddition = '<input type="hidden" name="project" value="'.$_GET['project'].'"
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>cms-kit Script-Manager</title>
+<title>cms-kit script-parser</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <style>
 body{background: #eee;font:.9em "Trebuchet MS", sans-serif;}

@@ -28,72 +28,8 @@ include '../../../header.php';
 include '../helper.php';
 
 $headstr = (isset($_GET['nocompress']) ? 'Stylesheets concatenated' : 'Stylesheets packed');
-$headline = '/* AUTO CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit */\n";
-/*
-$links = '';
+$headline = '/* AUTO CREATED FILE (built at ' . date('Y-m-d H:i:s', time()) . ") do not edit */\n";
 
-
-// grab the parameters of all jQuery-UI - Styles
-$uiFolders = glob($backend . '/../vendor/cmskit/jquery-ui/themes/*', GLOB_ONLYDIR);
-$styles = array();
-foreach ($uiFolders as $uiFolder) {
-    if (@$paramstr = file_get_contents($uiFolder . '/parameter.txt')) {
-        parse_str($paramstr, $styles[basename($uiFolder)]);
-    }
-}
-
-$paths = getPaths('css', $_GET['m']);
-
-// loop all Templates: name => array(filepath, compress_code)
-foreach ($paths as $templatename => $arr) {
-    $str = $headline;
-    foreach ($arr['src'] as $src) {
-        $p = str_replace(
-            array('TEMPLATE', 'VENDOR', 'BACKEND', 'FRONTEND'),
-            array($arr['base'], dirname($backend) . '/vendor', $backend, $frontend),
-            $src['path']
-        );
-
-        if (!file_exists($p)) {
-            exit('<p>' . $p . ' is missing!</p>');
-        }
-
-        $s = file_get_contents($p);
-
-        // compress string if active
-        $str .= ((!$src['compress'] || !empty($_GET['nocompress']))
-                ? $s
-                : compress($s, true));
-    }
-
-
-    // should we replace Placeholders with UI-Values?
-    if ($arr['lessify']) {
-        foreach ($styles as $k => $v) {
-            $o = str_replace(
-                array('TEMPLATE', 'BACKEND', 'FRONTEND', 'UI'),
-                array($arr['base'], $backend, $frontend, $k),
-                $arr['out']
-            );
-
-            // build relative path pointing to the UI-Directory
-            $v['BASEPATH'] = relativePath(dirname($o), $backend . '/../vendor/cmskit/jquery-ui/themes/' . $k);
-
-            // save File with Replacements
-            putFile($templatename, $o, strtr($str, $v));
-        }
-    } else {
-        $o = str_replace(
-            array('TEMPLATE', 'BACKEND'),
-            array($arr['base'], $backend),
-            $arr['out']
-        );
-        putFile($templatename, $o, $str);
-    }
-    $links .= '<hr />';
-
-}// loop all templates END
-*/
 
 ?>
 <!DOCTYPE html>
@@ -151,7 +87,7 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
 
 
     $msg = (isset($_POST['debug']) ? 'Styles concatenated' : 'Styles packed') . ' (' . time() . ')';
-    $headline = '/* AUTO-CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit! */\n";
+    $headline = '/* AUTO-CREATED FILE (built at ' . date('Y-m-d H:i:s', time()) . ") do not edit! */\n";
 
 
 

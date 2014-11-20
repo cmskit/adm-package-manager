@@ -30,12 +30,12 @@
  */
 function compress($str, $noCommentHead = false)
 {
-    //grab the first comment-block
+    //grab+hold the first comment-block
     $arr = explode('*/', $str);
     $commentHead = array_shift($arr) . "*/\n";
 
     $str = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", '', $str); // remove comments
-    $str = preg_replace('/(\\t|\\r|\\n)/', '', $str); // remove tabs + line-feeds ( agressive Method )
+    $str = preg_replace('/(\\t|\\r|\\n)/', '', $str); // remove tabs + line-feeds ( agressive method )
 
     //// temorary methods ( less agressive )
     //// $str = preg_replace('/(\\t)/','', $str); // remove only the tabs
@@ -56,39 +56,11 @@ function compress($str, $noCommentHead = false)
     return $str;
 }
 
-
-/**
- * @param $what
- * @return array
- */
-function getPaths($what, $m)
-{
-    global $frontend, $backend;
-    $basepath = ($m==0 ? $frontend : $backend) . '/templates';
-    $paths = array();
-
-    $templateFolders = glob($basepath . '/*', GLOB_ONLYDIR);
-
-    foreach ($templateFolders as $templateFolder) {
-        $name = basename($templateFolder);
-        $configPath = $templateFolder . '/config/packScripts.php';
-        if (file_exists($configPath)) {
-            $config = '';
-            include $configPath;
-            if ($j = json_decode($config, true)) {
-                $paths[$name] = $j[$what];
-            }
-            $paths[$name]['base'] = $templateFolder;
-        }
-    }
-    return $paths;
-}
-
+$links = '';
 /**
  * @param $path
  * @param $str
  */
-$links = '';
 function putFile($path, $str)
 {
     global $links;
