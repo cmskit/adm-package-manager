@@ -126,8 +126,8 @@ if(isset($_GET['ext']))
         $html .= '<button onclick="frameTo(\'_script_manager/index.php?project='.$projectName.'&m='.$m.'&ext='.$_GET['ext'].'\')" type="button">Scriptmanager</button>';
 
     }
-    // Templateparser
-    $html .= '<button onclick="frameTo(\'inc/tplparser/index.php?project='.$projectName.'&m='.$m.'&ext='.$_GET['ext'].'\')" type="button">Templateparser</button>';
+    // Parser
+    $html .= '<button onclick="frameTo(\'_parser/index.php?project='.$projectName.'&m='.$m.'&ext='.$_GET['ext'].'\')" type="button">Script parser/packer</button>';
 
 	// backup documentation in the actual "extension"
 	$html .= '<button onclick="frameTo(\'backupDoc.php?project='.$projectName.'&m='.$m.'&ext='.$_GET['ext'].'\')" type="button">Backup documentation</button>';

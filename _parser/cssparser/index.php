@@ -12,8 +12,6 @@
  *
  *  The GNU General Public License can be found at
  *  http://www.gnu.org/licenses/gpl.html
- *  A copy is found in the textfile GPL.txt and important notices to other licenses
- *  can be found found in LICENSES.txt distributed with these scripts.
  *
  *  This script is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,10 +25,11 @@
  */
 
 include '../../../header.php';
-include 'helper.php';
+include '../helper.php';
 
 $headstr = (isset($_GET['nocompress']) ? 'Stylesheets concatenated' : 'Stylesheets packed');
 $headline = '/* AUTO CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit */\n";
+/*
 $links = '';
 
 
@@ -94,7 +93,7 @@ foreach ($paths as $templatename => $arr) {
     $links .= '<hr />';
 
 }// loop all templates END
-
+*/
 
 ?>
 <!DOCTYPE html>
@@ -116,11 +115,93 @@ foreach ($paths as $templatename => $arr) {
     </style>
 </head>
 <body>
-<a href="javascript:history.back()">back</a>
+<a href="../?project=<?php echo $projectName?>">back</a>
+<h3>CSS parser</h3>
 
-<h2><?php echo $headstr; ?></h2>
+<?php
 
-<?php echo $links; ?>
+// draw the forms
+if($superroot) echo buildFileSelectList('Backend', $backend, 'pack_css.json');
+echo buildFileSelectList('Project '.$projectName, $frontend, 'pack_css.json');
+
+if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
+
+
+    // grab the parameters of all jQuery-UI - styles
+    $uiFolders = glob($backend . '/../vendor/cmskit/jquery-ui/themes/*', GLOB_ONLYDIR);
+    $styles = array();
+    foreach ($uiFolders as $uiFolder) {
+        if (@$paramstr = file_get_contents($uiFolder . '/parameter.txt')) {
+            parse_str($paramstr, $styles[basename($uiFolder)]);
+        }
+    }
+
+    // define some variables
+    $dir = dirname($_POST['path']);
+    $arr = json_decode(file_get_contents($_POST['path']), true);
+
+    if (empty($_POST['lang'])) $_POST['lang'] = 'en';
+
+    // base-path (usually the template directory, otherwise the directory with the json file)
+    if(empty($arr['base'])) {
+        $arr['base'] = $dir;
+    }else {
+        $arr['base'] = str_replace('DIR', $dir, $arr['base']);
+    }
+
+
+    $msg = (isset($_POST['debug']) ? 'Styles concatenated' : 'Styles packed') . ' (' . time() . ')';
+    $headline = '/* AUTO-CREATED FILE (build at ' . date('Y-m-d H:i:s', time()) . ") do not edit! */\n";
+
+
+
+    $str = $headline;
+    foreach ($arr['src'] as $src) {
+        $p = str_replace(
+            array('DIR', 'VENDOR', 'BACKEND', 'FRONTEND'),
+            array($dir, dirname($backend).'/vendor', $backend, $frontend),
+            $src['path']
+        );
+        if (!file_exists($p)) {
+            exit('<p>' . $p . ' is missing!</p>');
+        }
+        $s = file_get_contents($p);
+
+        $str .= ((!$src['compress'] || !empty($_POST['debug'])) ? $s : compress($s, $src['no_commenthead']));
+        $str .= "\n";
+
+        // should we replace placeholders with UI-values?
+        if ($arr['lessify']) {
+            foreach ($styles as $k => $v) {
+                $out = str_replace(
+                    array('DIR', 'BACKEND', 'FRONTEND', 'UI'),
+                    array($arr['base'], $backend, $frontend, $k),
+                    $arr['out']
+                );
+
+                // build relative path pointing to the UI-Directory
+                $v['BASEPATH'] = relativePath(dirname($o), $backend . '/../vendor/cmskit/jquery-ui/themes/' . $k);
+
+                // save file with replacements
+                putFile($out, strtr($str, $v));
+            }
+        } else {
+            $out = str_replace(
+                array('DIR', 'BACKEND'),
+                array($arr['base'], $backend),
+                $arr['out']
+            );
+            putFile($out, $str);
+        }
+
+
+
+    }
+
+    echo $links;
+
+}
+?>
 </body>
 
 </html>

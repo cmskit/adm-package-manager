@@ -39,6 +39,28 @@ class kitTpl
 
     public $myTags = array();
     public $actId = null;
+
+    public function is__writable($path) {
+        //will work in despite of Windows ACLs bug
+        //NOTE: use a trailing slash for folders!!!
+        //see http://bugs.php.net/bug.php?id=27609
+        //see http://bugs.php.net/bug.php?id=30931
+
+        if ($path{strlen($path)-1}=='/') // recursively return a temporary file path
+            return $this->is__writable($path.uniqid(mt_rand()).'.tmp');
+        else if (is_dir($path))
+            return $this->is__writable($path.'/'.uniqid(mt_rand()).'.tmp');
+        // check tmp file for read/write capabilities
+        $rm = file_exists($path);
+        $f = @fopen($path, 'a');
+        if ($f===false)
+            return false;
+        fclose($f);
+        if (!$rm)
+            unlink($path);
+        return true;
+    }
+
     /**
      * main function
      *
@@ -50,20 +72,21 @@ class kitTpl
     {
         $this->brb = $this->br;
         $out = '<div>';
-        $folder = dirname(realpath($path));
+        $folder = dirname($path);
         $basename = basename($path, '.xhtml');
 
 
-        if (!is_writable($folder)) {
+        if (!$this->is__writable($folder.'/')) {
             $out .= '<p class="error">Folder "' . $folder . '" is not writable!</p>';
             return $out.'</div>';
         }
+
         $this->tpl['tpl_filename'] = $path;
 
         $folder = $folder.'/'.$basename;
 
         if(!file_exists($folder)) {
-            mkdir($folder);
+            mkdir($folder, 0777);
         }
 
         chmod($folder, 0777);

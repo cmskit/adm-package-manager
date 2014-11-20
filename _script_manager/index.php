@@ -35,7 +35,7 @@ foreach($lf as $l) $langs[] = substr($l, -6, 2);
 		</strong>
 		<hr />
 	</p>
-    
+    <!--
 	<p><b>CSS-Packer</b> lets you concatenate and compress your Backend-CSS-Files</p>
 	<ul>
 		<li>
@@ -59,7 +59,9 @@ foreach($lf as $l) $langs[] = substr($l, -6, 2);
 		</li> ';
 	}
 	?>
+
 	</ul>
+	-->
 	<hr />
 	<p><a href="_misc/editFilter.php?<?php echo $getP;?>">Filter-Editor</a> lets you edit the global List-Filter-Definitions</p>
 	<p><a href="_misc/xml2json.php">xml2json</a> lets you translate old XML-Models to new JSON-Models</p>
@@ -70,9 +72,7 @@ foreach($lf as $l) $langs[] = substr($l, -6, 2);
 	<p><a href="_misc/show_checksums.php?<?php echo $getP;?>">Checksum-Test</a> lets you save a Checksum-Snapshot of your System or test against a previously saved Snapshot. This is useful for testing if someone has corrupted your system.</p>
 	<p><a href="_misc/phpinfo.php?<?php echo $getP;?>">phpinfo</a> ...sometimes you need it.</p>
 	<hr />
-	
-	<p><a href="_misc/pic_of_the_day.php?<?php echo $getP;?>">Pic of the Day Editor</a> lets you manage Pictures shown at Login</p>
-	<hr />
+
 	
 	<p>
 	Backend-Languages can updated/extended by uploading a Language-ZIP-File
