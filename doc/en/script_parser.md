@@ -47,9 +47,33 @@ Every theme folder should contain a file named "parameter.txt" with a url-encode
 
 	ffDefault=Helvetica%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=6px&...
 
-You can find the parameters in the comment section of jquery-ui.css
+You can find the parameters in the comment section of jquery-ui.css. In addition the variable "UI" is used for the name of the theme.
 
-Example: 
+If you want to translate a CSS-source like this below, 
+placeholders like "UI", "fcContent" and "ffDefault" are replaced by their values
+
+    body {
+        background: url("../../../../vendor/cmskit/jquery-ui/themes/UI/images/ui-bg_inset-soft_25_bgColorContent_1x100.png") repeat-x scroll 50% bottom #bgColorContent;
+        color: #fcContent;
+        font-family: ffDefault;
+        font-size: 62.5%;
+        margin: 11px;
+        visibility: visible;
+    }
+
+becomes
+
+    body {
+        background: url("var/www/html/cmskit/backend/../vendor/cmskit/jquery-ui/themes/humanity/images/ui-bg_inset-soft_25_f4f0ec_1x100.png") repeat-x scroll 50% bottom #f4f0ec;
+        color: #1e1b1d;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 62.5%;
+        margin: 11px;
+        visibility: visible;
+    }
+
+
+Here is an example of pack_css.json: 
 
     {
         "lessify": true,
@@ -74,7 +98,7 @@ Packing Javascript is driven by some directives
 * "translate": all "underscore function calls" like "_('show_entry')" are replaced by a lacalized label found in the language-array in "TEMPLATE_FOLDER/locales/LANGUAGESHORTCUT.php"
 "no_commenthead": if you want to supress the transfer of the first comment (usually containing licence informations) set this to true
 
-Example:
+Here is an example of pack_js.json:
     
     {
         "src": [
@@ -111,8 +135,8 @@ Example:
     }
 
 
-Note that you can use wildcards within the path (by using "*") to grab a bunch of files. 
-In addition you can exclude some of the files from the list.
+Note that you can use wildcards within the path (by using "*") to grab a bunch of files without specifying each. 
+In addition you can afterwards exclude some of the files from the list.
 
 
 

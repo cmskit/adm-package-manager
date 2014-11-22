@@ -67,7 +67,7 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
     $uiFolders = glob($backend . '/../vendor/cmskit/jquery-ui/themes/*', GLOB_ONLYDIR);
     $styles = array();
     foreach ($uiFolders as $uiFolder) {
-        if (@$paramstr = file_get_contents($uiFolder . '/parameter.txt')) {
+        if (@$paramstr = trim(file_get_contents($uiFolder . '/parameter.txt'))) {
             parse_str($paramstr, $styles[basename($uiFolder)]);
         }
     }
@@ -93,21 +93,16 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
 
     $str = $headline;
     foreach ($arr['src'] as $src) {
-        $p = str_replace(
-            array('DIR', 'VENDOR', 'BACKEND', 'FRONTEND'),
-            array($dir, dirname($backend).'/vendor', $backend, $frontend),
-            $src['path']
-        );
-        if (!file_exists($p)) {
-            exit('<p>' . $p . ' is missing!</p>');
-        }
-        $s = file_get_contents($p);
+
+
+        $s = collectFiles($src);
 
         $str .= ((!$src['compress'] || !empty($_POST['debug'])) ? $s : compress($s, $src['no_commenthead']));
         $str .= "\n";
 
         // should we replace placeholders with UI-values?
         if ($arr['lessify']) {
+
             foreach ($styles as $k => $v) {
                 $out = str_replace(
                     array('DIR', 'BACKEND', 'FRONTEND', 'UI'),
@@ -118,13 +113,16 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
                 // build relative path pointing to the UI-Directory
                 $v['BASEPATH'] = relativePath(dirname($o), $backend . '/../vendor/cmskit/jquery-ui/themes/' . $k);
 
-                // save file with replacements
+                // replace "UI" with the themename
+                $str = str_replace('UI', $k, $str);
+
+                // save file with replacements from parameter string
                 putFile($out, strtr($str, $v));
             }
         } else {
             $out = str_replace(
-                array('DIR', 'BACKEND'),
-                array($arr['base'], $backend),
+                array('DIR', 'BACKEND', 'FRONTEND'),
+                array($arr['base'], $backend, $frontend),
                 $arr['out']
             );
             putFile($out, $str);

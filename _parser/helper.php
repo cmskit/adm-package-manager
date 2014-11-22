@@ -74,6 +74,31 @@ function putFile($path, $str)
     }
 }
 
+function collectFiles($src) {
+
+    global $dir, $backend, $frontend;
+
+    $p = str_replace(
+        array('DIR', 'VENDOR', 'BACKEND', 'FRONTEND'),
+        array($dir, dirname($backend).'/vendor', $backend, $frontend),
+        $src['path']
+    );
+
+    $s = '';
+
+    // grab the file(s) by glob (respecting wildcards within the path)
+    $files = glob($p);
+
+    foreach($files as $file) {
+
+        // if a filename is excluded skip it
+        if(!isset($src['exclude']) || !in_array(basename($file), $src['exclude'])) {
+            $s .= file_get_contents($file);
+        }
+    }
+    return $s;
+}
+
 
 /**
  * @param $pattern

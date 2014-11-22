@@ -81,24 +81,8 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
     $str = $headline;
     // loop all paths in "src"
     foreach ($arr['src'] as $src) {
-        $p = str_replace(
-            array('DIR', 'VENDOR', 'BACKEND', 'FRONTEND'),
-            array($dir, dirname($backend).'/vendor', $backend, $frontend),
-            $src['path']
-        );
-        $s = '';
 
-        // grab the file(s) by glob (respecting wildcards within the path)
-        $files = glob($p);
-
-        foreach($files as $file) {
-
-            // if a filename is excluded skip it
-            if(!isset($src['exclude']) || !in_array(basename($file), $src['exclude'])) {
-                $s .= file_get_contents($file);
-            }
-        }
-
+        $s = collectFiles($src);
         $str .= ((!$src['compress'] || !empty($_POST['debug'])) ? $s : compress($s, $src['no_commenthead']));
 
 
