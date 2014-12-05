@@ -94,9 +94,12 @@ Here is an example of pack_css.json:
 
 Packing Javascript is driven by some directives
 
+* "exclude": if you collect a bunch of files via wildcard searching you can exclude some of the files here
 * "compress": compress the Javascript by removing whitespaces an linefeeds. You have to make sure that the script is "compressable" (e.g. statements and lines are termiated with a semicolon)
 * "translate": all "underscore function calls" like "_('show_entry')" are replaced by a lacalized label found in the language-array in "TEMPLATE_FOLDER/locales/LANGUAGESHORTCUT.php"
-"no_commenthead": if you want to supress the transfer of the first comment (usually containing licence informations) set this to true
+* "no_commenthead": if you want to supress the transfer of the first comment (usually containing licence informations) set this to true
+* "replace": probably the function is fine, but you want to manipulate something (like an container-ID defined in this function). 
+Replace it like this {"NEEDLE": "REPLACEMENT", "NEEDLE2": "REPLACEMENT2", ...}
 
 Here is an example of pack_js.json:
     
@@ -104,13 +107,16 @@ Here is an example of pack_js.json:
         "src": [
             {
                 "path": "DIR/fn.*.js",
-                "compress": true,
-                "translate": true,
-                "no_commenthead": true,
                 "exclude": [
                     "fn.special_function.js",
                     "fn.another_function.js"
-                ]
+                ],
+                "compress": true,
+                "translate": true,
+                "no_commenthead": true,
+                "replace": {
+                    "#colMidb": "#anotherID"
+                }
             },
             {
                 "path": "DIR/core.js",
