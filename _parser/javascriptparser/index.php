@@ -90,6 +90,12 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
         if ($src['translate'] && $LL) {
             $str = preg_replace("/_\('(\w+)'\)/e", "LL('\\1')", $str);
         }
+
+        // replace string-snippets if defined
+        if(isset($src['replace'])) {
+            $str = strtr($str, $src['replace']);
+        }
+
         $str .= "\n";
 
     }
@@ -99,6 +105,8 @@ if(!empty($_POST['path']) && in_array($_POST['path'], $fileList)) {
         array($dir, $backend, $frontend, $_POST['lang']),
         $arr['out']
     );
+
+
 
     putFile($o, $str);
     echo '<p>'.$msg.'</p>';

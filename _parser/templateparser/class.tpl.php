@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('UTC');
 
 /**
  * Template parser class
@@ -111,7 +112,7 @@ class kitTpl
             //print_r($dom);
 
             // getElementsByClassName
-            $containers = $this->getElementsByClassName($dom, 'container');
+            $containers = $this->getElementsByClassName($dom, 'TemplateContainer');
             $count = 0;
             foreach ($containers as $container) {
 
