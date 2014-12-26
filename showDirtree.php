@@ -30,7 +30,7 @@ body {
 // if we find a file called readme.md in the root-dir or in doc/en/ show it an exit
 if (((@$r1 = file_get_contents($path.'/readme.md')) !== false) || ((@$r2 = file_get_contents($path.'/doc/en/readme.md')) !== false))
 {
-	require '../../../vendor/cmskit/lib-markdown-extra/Markdown.php';
+	require '../../../vendor/michelf/php-markdown/Michelf/MarkdownExtra.inc.php';
 	echo Michelf\MarkdownExtra::defaultTransform($r2?$r2:$r1);
 	echo '</body></html>';
 	exit;
