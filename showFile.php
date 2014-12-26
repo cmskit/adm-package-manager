@@ -42,8 +42,8 @@ if( !in_array('extensions', explode(DIRECTORY_SEPARATOR, realpath(dirname($file)
 }*/
 
 $file = realpath($mainpath[2] . $_GET['ext'] . '/' . $_GET['file']);
-
-$mime = array_pop(explode('.', $_GET['file']));
+$arr = explode('.', $file);
+$mime = array_pop($arr);
 
 // allowed modes + translation mime => ace-mode (see: markup/src-min/mode-xxx.js)
 $mode = array(
@@ -66,12 +66,12 @@ if (is_readable($file))
 {
 	//utf8_decode(
 	$content = file_get_contents($file);
-	if(strlen(trim($content))==0) exit($file . ' seems to be empty!');
+	if(strlen(trim($content))==0) exit('<b>' . $file . '</b> seems to be empty!');
 	$canSave = is_writable($file);
 }
 else
 {
-	exit('File "'.$file.'" not found/not readable!');
+	exit('File <b>'.$file.'</b> not found/not readable!');
 }
 ;?>
 

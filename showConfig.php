@@ -25,7 +25,7 @@
 * JSON-Editor Interface based on: http://jsoneditoronline.org
 * 
 */
-if (!file_exists('../../wizards/jsoneditor/index.php')) exit('JSON-Wizard is missing');
+//if (!file_exists('../../wizards/jsoneditor/index.php')) exit('JSON-Wizard is missing');
 
 require '../header.php';
 require 'inc/path.php';
@@ -95,9 +95,9 @@ $action = 'showConfig.php?m='.$_GET['m'].'&project='.$projectName.'&ext='.$_GET[
 	<meta charset="utf-8" />
 	<title>JSON-Editor</title>
 	<script type="text/javascript" src="../../../vendor/cmskit/jquery-ui/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../wizards/jsoneditor/jsoneditor/jsoneditor.css" />
+	<link rel="stylesheet" type="text/css" href="../../../vendor/cmskit/jsoneditor/jsoneditor.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../wizards/jsoneditor/add/add.css" />
-	<script type="text/javascript" src="../../wizards/jsoneditor/jsoneditor/jsoneditor.js"></script>
+	<script type="text/javascript" src="../../../vendor/cmskit/jsoneditor/jsoneditor.min.js"></script>
 </head>
 <body>
 <?php echo $s;?>
@@ -110,7 +110,7 @@ var obj = <?php echo $str;?>;
 	
 
 var container = document.getElementById("jsoneditor");
-var editor = new jsoneditor.JSONEditor(container);
+var editor = new JSONEditor(container);
 
 editor.set(obj);
 
